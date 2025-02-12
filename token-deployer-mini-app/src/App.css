@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+/* General container style */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background-color: #1a1a1a; /* Dark background */
+  color: #e0e0e0; /* Light text color */
+}
+
+/* Logo styles */
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms, transform 200ms;
+  cursor: pointer;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 1.5em #bb86fc); /* Purple glow */
+  transform: scale(1.1); /* Subtle zoom on hover */
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 1.5em #61dafb); /* React blue glow */
+}
+
+/* Keyframes for rotating animation */
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Apply animation only if reduced motion is not preferred */
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+/* Card styles for form and messages */
+.card {
+  padding: 2rem;
+  margin: 1rem auto;
+  background-color: #282828; /* Slightly lighter dark background */
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* Text styles for the welcome message */
+.read-the-docs {
+  color: #c0c0c0; /* Softer gray */
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  line-height: 1.6;
+}
+
+/* Connect button improvements */
+button {
+  background-color: #6200ea;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 200ms ease-in-out, transform 150ms;
+}
+
+button:hover {
+  background-color: #3700b3; /* Darker purple on hover */
+  transform: translateY(-3px); /* Lift effect */
+}
+
+button:focus {
+  outline: 2px solid #bb86fc;
+  outline-offset: 3px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .logo {
+    height: 4.5em;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  button {
+    width: 100%;
+  }
+}
