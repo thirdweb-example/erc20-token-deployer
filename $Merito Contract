@@ -1,0 +1,88 @@
+import { createThirdwebClient } from "thirdweb";
+import { ConnectButton } from "thirdweb/react";
+import { darkTheme } from "thirdweb/react";
+import {
+  inAppWallet,
+  createWallet,
+} from "thirdweb/wallets";
+import { ethereum } from "thirdweb/chains";
+
+const client = createThirdwebClient({
+  clientId: "....",
+});
+
+const wallets = [
+  inAppWallet({
+    auth: {
+      options: [
+        "google",
+        "discord",
+        "telegram",
+        "farcaster",
+        "email",
+        "x",
+        "passkey",
+        "phone",
+        "github",
+        "twitch",
+        "apple",
+        "facebook",
+        "coinbase",
+        "guest",
+      ],
+    },
+  }),
+  createWallet("com.coinbase.wallet"),
+  createWallet("me.rainbow"),
+  createWallet("io.rabby"),
+  createWallet("io.zerion.wallet"),
+  createWallet("io.metamask"),
+  createWallet("com.trustwallet.app"),
+  createWallet("com.binance.wallet"),
+  createWallet("org.uniswap"),
+  createWallet("app.phantom"),
+];
+
+function Example() {
+  return (
+    <ConnectButton
+      client={client}
+      wallets={wallets}
+      theme={darkTheme({
+        colors: {
+          modalBg: "hsl(228, 12%, 8%)",
+          secondaryIconHoverBg: "hsl(233, 12%, 15%)",
+        },
+      })}
+      connectButton={{ label: "CyberonHex " }}
+      connectModal={{
+        size: "compact",
+        title: "$hoX",
+        titleIcon: "https://wolverineseye.com/",
+        showThirdwebBranding: false,
+        termsOfServiceUrl:
+          "https://wolverineseye.com/blogs#6584f21e-1058-40c5-a96a-8ee32f65183a",
+        privacyPolicyUrl:
+          "https://wolverineseye.com/blogs#6584f21e-1058-40c5-a96a-8ee32f65183a",
+      }}
+      accountAbstraction={{
+        chain: ethereum, // replace with the chain you want
+        sponsorGas: true,
+      }}
+      auth={{
+        async doLogin(params) {
+          // call your backend to verify the signed payload passed in params
+        },
+        async doLogout() {
+          // call your backend to logout the user if needed
+        },
+        async getLoginPayload(params) {
+          // call your backend and return the payload
+        },
+        async isLoggedIn() {
+          // call your backend to check if the user is logged in
+        },
+      }}
+    />
+  );
+}
